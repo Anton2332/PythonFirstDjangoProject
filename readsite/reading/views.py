@@ -18,7 +18,7 @@ def archive(request, year):
     #     raise Http404()
 
     if int(year) > 2020:
-        return redirect('home', permanent=True)# if permanent True постійний редірект False времений
+        return redirect('home', permanent=True)  # if permanent True постійний редірект False времений
 
     return HttpResponse(f"Hello {year} world")
 
