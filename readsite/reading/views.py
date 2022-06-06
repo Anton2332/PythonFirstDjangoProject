@@ -1,9 +1,49 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
+from .models import *
+
+menu = [
+    {'title': 'Про сайт', 'url_name': 'about'},
+    {'title': "Додати", 'url_name': 'add_page'},
+    {'title': 'Зворотній звязок', 'url_name': 'contact'},
+    {'title': 'Войти', 'url_name':'login'}
+]
+
 
 def index(request):
-    return HttpResponse("Страниці приложения reading")
+    # return HttpResponse("Страниці приложения reading")
+    posts = Reader.objects.all()
+    context = {
+        'menu': menu,
+        'posts': posts,
+        'title': 'Головна сторінка'
+    }
+    return render(request, 'reading/index.html', context=context)
+
+
+def about(request):
+    context = {
+        'menu': menu,
+        'title': 'Про сайт'
+    }
+    return render(request, 'reading/about.html', context=context)
+
+
+def addpage(request):
+    return HttpResponse('Додати статю')
+
+
+def contact(request):
+    return HttpResponse('Зворотній звязок')
+
+
+def login(request):
+    return HttpResponse('Авторизація')
+
+
+def show_post(request, post_id):
+    return HttpResponse(f'ID = {post_id}')
 
 
 def categories(request, catid):

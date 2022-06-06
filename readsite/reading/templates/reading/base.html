@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link type="text/css" href="{% static 'reading/css/styles.css' %}" rel="stylesheet"/>
+</head>
+<body>
+{% block mainmenu %}
+<h2>
+    <a href="{% url 'home' %}">
+        home
+    </a>
+</h2>
+<ul>
+    {% for m in menu %}
+    <li>
+        <a href="{% url m.url_name %}">{{m.title}}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+{% block content %}
+{% endblock content %}
+
+</body>
+</html>

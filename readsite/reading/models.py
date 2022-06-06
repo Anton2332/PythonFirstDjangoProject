@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Reader(models.Model):
@@ -10,5 +11,8 @@ class Reader(models.Model):
     is_published = models.BooleanField(default=True)
 
     def __str__(self):
-        return  self.title
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('post', kwargs={'post_id': self.pk})
 

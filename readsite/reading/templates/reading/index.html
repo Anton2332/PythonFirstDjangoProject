@@ -1,0 +1,24 @@
+{% extends 'reading/base.html' %}
+
+{% block content %}
+<h1 >{{title}}</h1>
+<ul>
+    {% for p in posts %}
+    <li>
+        <h3 class="block">{{p.title}}</h3>
+        <p>
+            {% autoescape off %}
+            {{p.content|truncatewords:3|linebreaks}}
+            {% endautoescape %}
+        </p>
+        <p>
+            <!--href="{% url 'post' p.pk %}"-->
+            <a href="{{ p.get_absolute_url }}">
+            Читати
+            </a>
+        </p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
